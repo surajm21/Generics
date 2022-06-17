@@ -1,22 +1,46 @@
 package com.bridglabz;
 
-public class MaximumTest {
-    // determines the largest of three Comparable objects
-    public static <T extends Comparable<T>> T maximum(T x, T y, T z) {
-        T max = x; // assume x is initially the largest
+public class MaximumTest<T extends Comparable<T>> {
+    T x,y,z;
 
-        if (y.compareTo(max) > 0)
-            max = y; // y is the largest so far
+    public MaximumTest(T x, T y, T z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+    public T maximum(){
+        return  MaximumTest.maximum(x ,y ,z );
+    }
+    //determines the largest of three compilation object
+    public static <T extends Comparable<T>> T maximum (T x,T y,T z){
+        T max = x;
+        if (y.compareTo(max) > 0) {
+            max = y;
+        }
+        if (z.compareTo(max) > 0) {
+            max = z;
+        }
+        return max;
+    }
 
-        if (z.compareTo(max) > 0)
-            max = z; // z is the largest
-
-        return max; // returns the largest object
-    } // end method maximum
-
+    public static String testMaximum(String x,String y,String z) {
+        String max = x;
+        if (y.compareTo(max) > 0) {
+            max = y;
+        }
+        if (z.compareTo(max) > 0) {
+            max = z;
+        }
+        return max;
+    }
     public static void main(String[] args) {
-        System.out.printf("Maximum of %d, %d and %d is %d\n\n", 3, 4, 5, maximum(3, 4, 5));
-        System.out.printf("Maximum of %.1f, %.1f and %.1f is %.1f\n\n", 6.6, 8.8, 7.7, maximum(6.6, 8.8, 7.7));
-        System.out.printf("Maximum of %s, %s and %s is %s\n", "pear", "apple", "orange", maximum("pear", "apple", "orange"));
+        Integer xInt=2, yInt=3,zInt=4;
+        Float xF1=6.6f, yF1=8.8f,zF1=7.7f;
+        String xStr="pear", yStr="apple",zStr="orange";
+
+        MaximumTest.testMaximum(xStr,yStr ,zStr);
+        new MaximumTest(xInt , yInt ,zInt).maximum();
+        new MaximumTest(xF1 , yF1 ,zF1).maximum();
+        new MaximumTest(xStr , yStr ,zStr).maximum();
     }
 }
